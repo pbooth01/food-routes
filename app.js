@@ -5,11 +5,8 @@ var domReady = require('domready');
 var GoogleMapsLoader = require('google-maps');
 var Application = require('./components/Application.react');
 
-
-// Render the components, picking up where react left off on the server
-
 domReady(function () {
-	GoogleMapsLoader.KEY = '';
+	GoogleMapsLoader.KEY = 'AIzaSyDUpp59oKV8NgrHLY6FCwXS6mKDpoL6sH4';
     GoogleMapsLoader.LIBRARIES = ['places'];
     GoogleMapsLoader.load(function (google) {
 

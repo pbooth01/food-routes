@@ -1,6 +1,6 @@
 var JSX = require('node-jsx').install(),
   React = require('react');
-  RoutesApp = React.createFactory(require('./components/HelloWorld.react'))
+  Application = React.createFactory(require('./components/application.react'))
 
 module.exports = {
 
@@ -8,9 +8,9 @@ module.exports = {
 
 
   	var markup = React.renderToString(
-    	RoutesApp({})
+    	Application({})
     );
-
+    
     // Render our 'home' template
       res.render('home', {
         markup: markup, // Pass rendered react markup
