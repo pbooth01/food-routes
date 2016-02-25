@@ -1,0 +1,51 @@
+{
+  "name": "food-routes",
+  "version": "0.0.0",
+  "description": "food route finder",
+  "main": "app.js",
+  "scripts": {
+    "watch": "watchify app.js -o public/js/bundle.js -v",
+    "browserify": "browserify app.js | uglifyjs > public/js/bundle.js",
+    "build": "npm run browserify ",
+    "start": "npm run watch & nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbooth01/food-routes.git"
+  },
+  "keywords": [
+    "react.js"
+  ],
+  "author": "Phillip Booth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pbooth01/food-routes/issues"
+  },
+  "homepage": "https://github.com/pbooth01/food-routes#readme",
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "domready": "^1.0.8",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "lodash": "^4.5.1",
+    "node-jsx": "^0.13.3",
+    "q": "^1.4.1",
+    "react": "^0.14.7",
+    "react-backbone": "^1.0.5",
+    "react-mixin-manager": "^1.0.2",
+    "socket.io": "^1.4.5",
+    "vent": "0.0.2"
+  },
+  "devDependencies": {
+    "browserify": "*",
+    "nodemon": "*",
+    "reactify": "*",
+    "uglify-js": "*",
+    "watchify": "*"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  }
+}
