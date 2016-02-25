@@ -10,6 +10,7 @@ var port = process.env.PORT || 8080;
 // Set handlebars as the templating engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+
 // Set /public as our static content dir
 app.use("/", express.static(__dirname + "/public/"));
 
