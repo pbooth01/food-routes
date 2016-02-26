@@ -8,13 +8,12 @@ var directionsDisplay,
     directionsService,
     placesService,
     DEFAULT_LOCATION,
-    LatLng; 
+    LatLng;
 
 // Export the Application component
 module.exports = Map = React.createClass({
 
 	componentDidMount: function () {
-		var df = Q.defer();
 
 		directionsDisplay = new google.maps.DirectionsRenderer();
         directionsService = new google.maps.DirectionsService();
@@ -23,6 +22,7 @@ module.exports = Map = React.createClass({
         DEFAULT_LOCATION = new google.maps.LatLng(42.748485699999996, -71.05772569999999);
         
     	if ("geolocation" in navigator) {
+
     		var that = this;
 
   			navigator.geolocation.getCurrentPosition(function(position) {
@@ -30,23 +30,37 @@ module.exports = Map = React.createClass({
   				var userCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
   				that.renderMap({
-            		zoom: 10,
+            		zoom: 15,
             		center: userCoords,
             		disableDefaultUI:true
         		});
 			});
 		} else {
   			this.renderMap({
-            		zoom: 10,
+            		zoom: 15,
             		center: DEFAULT_LOCATION,
             		disableDefaultUI:true
         		});
-		}
+		}			
+    },
 
-		window.setTimeout(function(){
-			placesService = new google.maps.places.PlacesService(this.map);
-		}, 300);
-		
+    renderRoute: function(){
+    	var google = this.props.mapService,
+    		directionsRequest = {
+    			origin: 'xxxxxxx',
+    			destination: 'xxxxxxx',
+    			travelMode: google.maps.DirectionsTravelMode.DRIVING
+    		};
+    	directionsService.route(
+  			directionsRequest,
+  			function(response, status){
+    			if (status == google.maps.DirectionsStatus.OK){
+      				directionsDisplay.setDirections(response);
+    			}
+    			else
+      				console.log("Unable to retrieve your route");
+  			}			
+		);
     },
 
     renderMap: function(mapOptions){
@@ -56,6 +70,7 @@ module.exports = Map = React.createClass({
 
     	mapCanvas.style.height = vH + 'px';
         this.map = new google.maps.Map(mapCanvas, mapOptions);
+        placesService = new google.maps.places.PlacesService(this.map);
         directionsDisplay.setMap(this.map);
     },
 
