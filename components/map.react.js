@@ -15,6 +15,8 @@ module.exports = Map = React.createClass({
 
 	componentDidMount: function () {
 
+		var google = this.props.mapService;
+
 		directionsDisplay = new google.maps.DirectionsRenderer();
         directionsService = new google.maps.DirectionsService();
 
@@ -58,7 +60,7 @@ module.exports = Map = React.createClass({
       				directionsDisplay.setDirections(response);
     			}
     			else
-      				console.log("Unable to retrieve your route");
+      				alert("Unable to retrieve your route");
   			}			
 		);
     },
@@ -66,10 +68,11 @@ module.exports = Map = React.createClass({
     renderMap: function(mapOptions){
     	var google = this.props.mapService,
     		mapCanvas = document.getElementById('map'),
-    		vH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    		vH = Math.max(document.documentElement.clientHeight, window.innerHeight || 0); /*Change this to take into account panel height*/
 
     	mapCanvas.style.height = vH + 'px';
         this.map = new google.maps.Map(mapCanvas, mapOptions);
+        /*Setting this up for later*/
         placesService = new google.maps.places.PlacesService(this.map);
         directionsDisplay.setMap(this.map);
     },
