@@ -11,7 +11,6 @@ module.exports = Panel = React.createClass({
   		var route = this.props.route,
   			wayPoints = route.get('WayPoints'),
             self = this;
-           console.log(route);
 
   			wayPointInputs = wayPoints.map(function(wayPoint, index){
   				
@@ -22,6 +21,7 @@ module.exports = Panel = React.createClass({
   						<WayPoint
   							index={index}
   							mapService={self.props.mapService}
+  							updateRoute={self.props.updateRoute}
   							pointInfo={wayPoint} />
   					</div>
   				);

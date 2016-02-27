@@ -2,7 +2,7 @@
 
 var React = require('react'),
 	vent = require('../public/js/utilities/vent'),
-    Q = require('q');
+    WayPoints = require('../public/js/models/way-points');
 
 var directionsDisplay,
     directionsService,
@@ -43,26 +43,36 @@ module.exports = Map = React.createClass({
             		center: DEFAULT_LOCATION,
             		disableDefaultUI:true
         		});
-		}			
+		}	
+		/*Setting up Event Handelers*/
+		vent.on('map:renderRoute', this.renderRoute, this);		
     },
 
     renderRoute: function(){
     	var google = this.props.mapService,
-    		directionsRequest = {
-    			origin: 'xxxxxxx',
-    			destination: 'xxxxxxx',
-    			travelMode: google.maps.DirectionsTravelMode.DRIVING
+    		wayPoints = this.props.route.get('WayPoints'),
+    		midPoints = wayPoints.pluck('name').slice(1, wayPoints.length - 1),
+    		WPrequestArray = midPoints.map(function(name){ return {location: name}});
+
+    	var	directionsRequest = {
+    			origin: wayPoints.at(0).get('name'),
+    			destination: wayPoints.at(-1).get('name'),
+    			travelMode: google.maps.DirectionsTravelMode.DRIVING,
+    			waypoints: WPrequestArray
     		};
-    	directionsService.route(
-  			directionsRequest,
-  			function(response, status){
-    			if (status == google.maps.DirectionsStatus.OK){
-      				directionsDisplay.setDirections(response);
-    			}
-    			else
-      				alert("Unable to retrieve your route");
-  			}			
-		);
+
+    	if(directionsRequest.origin !== 'start' && directionsRequest.destination !== 'end'){
+	    	directionsService.route(
+	  			directionsRequest,
+	  			function(response, status){
+	    			if (status == google.maps.DirectionsStatus.OK){
+	      				directionsDisplay.setDirections(response);
+	    			}
+	    			else
+	      				alert("Unable to retrieve your route");
+	  			}			
+			);
+    	}
     },
 
     renderMap: function(mapOptions){
