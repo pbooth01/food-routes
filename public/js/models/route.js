@@ -4,7 +4,11 @@ var Backbone = require('backbone'),
 var Route = Backbone.Model.extend({
     defaults: {
         name: 'Route',
-        wayPoints: new WayPoints()
+        distance: null,
+        time: null,
+        wayPoints: new WayPoints(),
+        overview_path: null, /*This is an array of LatLng's from Google*/
+        filtered_path: null
     }
 });
 

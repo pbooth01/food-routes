@@ -29,8 +29,10 @@ module.exports = Panel = React.createClass({
 
     	return (
       		<div className='panel-wrapper'>
-      			<PanelHeader routeName={this.props.route.get('name')}/>
-      			{wayPointInputs}
+      			<PanelHeader route={route}/>
+      			<div className='waypoint-input-wrapper'>
+      				{wayPointInputs}
+      			</div>
       		</div>
     	);
   	}

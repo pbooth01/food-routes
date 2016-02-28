@@ -7,7 +7,7 @@ var WayPoint = Backbone.Model.extend({
         lng: 0,
         placeDetails: null,
         placeId: null,
-        nearBy: null
+        nearBy: null,
     }
 });
 
