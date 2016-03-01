@@ -53,7 +53,7 @@ module.exports = Map = React.createClass({
 
     renderRoute: function(){
     	var google = this.props.mapService,
-    		wayPoints = this.props.route.get('WayPoints'),
+    		wayPoints = this.props.route.get('wayPoints'),
     		midPoints = wayPoints.pluck('name').slice(1, wayPoints.length - 1),
     		WPrequestArray = midPoints.map(function(name){ return {location: name}}),
     		that = this;
@@ -74,6 +74,8 @@ module.exports = Map = React.createClass({
 	      				console.log(response);
 
 	      				that.props.updatePath({
+                            distance: response.routes[0].legs[0].distance.text,
+                            time: response.routes[0].legs[0].duration.text,
 	      					overview_path: response.routes[0].overview_path,
 	      					filtered_path: Haversine.distanceFilter(response.routes[0].overview_path)
 	      				});

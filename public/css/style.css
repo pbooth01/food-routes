@@ -1,0 +1,19 @@
+.waypoint-input-wrapper{
+	float: left;
+}
+
+.way-of-travel-wrapper{
+	float: left;
+}
+
+.travel-modes{
+	list-style: none;
+}
+
+.travel-modes li{
+	border-bottom: groove;
+}
+
+.travel-modes li i:hover{
+	background-color: #D0D0D0;
+}

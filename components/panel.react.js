@@ -1,16 +1,18 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
+  classNames = require('classnames'),
 	PanelHeader = require ('./PanelHeader.react'),
-	WayPoint = require ('./wayPoint.react');
+	WayPoint = require ('./wayPoint.react'),
+  FoodTable = require ('./foodTable.react');
 
 
 module.exports = Panel = React.createClass({
 
   	render: function(){
-  		var route = this.props.route,
-  			wayPoints = route.get('WayPoints'),
-            self = this;
+      var route = this.props.route,
+        wayPoints = route.get('wayPoints'),
+        self = this;
 
   			wayPointInputs = wayPoints.map(function(wayPoint, index){
   				
@@ -33,6 +35,14 @@ module.exports = Panel = React.createClass({
       			<div className='waypoint-input-wrapper'>
       				{wayPointInputs}
       			</div>
+            <div className='way-of-travel-wrapper'>
+              <ul className='travel-modes'>
+                <li> <i className="fa fa-user fa-3x"></i> </li>
+                <li> <i className="fa fa-car fa-3x"></i> </li>
+                <li> <i className="fa fa-bicycle fa-3x"></i> </li>
+              </ul>
+            </div>
+            <FoodTable/>
       		</div>
     	);
   	}

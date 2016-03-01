@@ -6,15 +6,7 @@ var JSX = require('node-jsx').install(),
 module.exports = {
 
   index: function (req, res) {
-
-
-  	var markup = ReactDOMServer.renderToString(
-    	Application({})
-    );
-
     // Render our 'home' template
-      res.render('home', {
-        markup: markup, // Pass rendered react markup
-      });
+      res.render('home');
   }
 }

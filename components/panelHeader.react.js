@@ -9,24 +9,23 @@ var EmptyHeader = React.createClass({
 	});
 
 var FilledHeader = React.createClass({
-		render: function () {
-			var time = this.props.route.get('time'),
-				distance = this.props.route.get('distance');
+	render: function () {
+		var time = this.props.route.get('time'),
+			distance = this.props.route.get('distance');
 
-			return(
-				<div className='panel-header-body'>
-					<div className="distance-info">
-		      			<h1> {time} </h1>
-		      			<p> Time</p>
-		     		 </div>
-		     		 <div className="time-info">
-		     		 	<h1>{distance}</h1>
-		     		 	<p>Distance</p>
-		     		 </div>
-	     		</div>
+		return(
+			<div className='panel-header-body'>
+				<div className="distance-info">
+		      		<h1> {time} </h1>
+		     	</div>
+		     	<div className="time-info">
+		     		<h1>{distance}</h1>
+		     	</div>
+	     	</div>
 			);
 		} 
 });
+
 
 
 module.exports = PanelHeader = React.createClass({

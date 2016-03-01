@@ -20,15 +20,22 @@ module.exports = Application = React.createClass({
   	},
 
   	initializeRoute: function(){
-  		return new RouteModel();
+  		var route = new RouteModel();
+
+      route.get('wayPoints').add([
+        {name: 'start'},
+        {name: 'end'}
+      ]);
+
+      return route;
   	},
 
   	initializeFood: function(){
   		return new WayPoints();
   	},
 
-  	updateWayPointInformation: function(index, options){
-  		var wayPoints = this.state.route.get('WayPoints'),
+  	updateRouteInformation: function(index, options){
+  		var wayPoints = this.state.route.get('wayPoints'),
   			route = wayPoints.at(index);
   		
   		route.set(options);
@@ -50,7 +57,7 @@ module.exports = Application = React.createClass({
   	render: function(){
   		var mapService = this.props.mapService,
   			route = this.state.route,
-  			updateRoute = this.updateWayPointInformation,
+  			updateRoute = this.updateRouteInformation,
   			updatePath = this.updatePathInfo;
     	return (
     		<div className='application-wrapper'>
