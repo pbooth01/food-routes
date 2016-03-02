@@ -28,7 +28,7 @@ module.exports = WayPoint = React.createClass({
   	render: function(){
     	return (
       		<div className="input">
-      			 <input ref='wayPoint' type='text' name='wayPoint' defaultValue={this.props.pointInfo.get('name')}/>
+      			 <input className="waypoint-text" ref='wayPoint' type='text' name='wayPoint' defaultValue={this.props.pointInfo.get('name')}/>
       		</div>
     	);
   	}

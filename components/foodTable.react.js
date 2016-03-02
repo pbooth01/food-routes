@@ -8,11 +8,7 @@ module.exports = FoodTable = React.createClass({
   // Render the component
   render: function(){
     return (
-      <div className='food-type-wrapper'>
-      	<table border='1'>
-      		<thead>
-      			Choose your food!
-      		</thead>
+      	<table className='food-table'>
       		<tbody>
 	      		<tr>
 	      			<td>
@@ -60,7 +56,6 @@ module.exports = FoodTable = React.createClass({
 	      		</tr>
 	      	</tbody>
       	</table>
-      </div>
     )
   }
 

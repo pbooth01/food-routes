@@ -1,19 +1,29 @@
-.waypoint-input-wrapper{
-	float: left;
+.panel-body{
+	display: flex;
+	justify-content: space-between;
 }
 
 .way-of-travel-wrapper{
-	float: left;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
-.travel-modes{
-	list-style: none;
+.food-table{
+	width: 55%;
 }
 
-.travel-modes li{
-	border-bottom: groove;
+.food-table td{
+	text-align: center;
 }
 
-.travel-modes li i:hover{
-	background-color: #D0D0D0;
+.waypoint-input-wrapper{
+	width: 20%;
+}
+.waypoint-text{
+	width: 100%;
+	height: 2.8em;
+	border-radius: 22px;
+	border: 1px solid #009cde;
+	padding-left: 1em;
 }

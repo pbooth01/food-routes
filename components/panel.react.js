@@ -32,17 +32,21 @@ module.exports = Panel = React.createClass({
     	return (
       		<div className='panel-wrapper'>
       			<PanelHeader route={route}/>
-      			<div className='waypoint-input-wrapper'>
-      				{wayPointInputs}
-      			</div>
-            <div className='way-of-travel-wrapper'>
-              <ul className='travel-modes'>
-                <li> <i className="fa fa-user fa-3x"></i> </li>
-                <li> <i className="fa fa-car fa-3x"></i> </li>
-                <li> <i className="fa fa-bicycle fa-3x"></i> </li>
-              </ul>
+            <div className='panel-body'>
+
+        			<div className='waypoint-input-wrapper'>
+        				{wayPointInputs}
+        			</div>
+
+              <div className='way-of-travel-wrapper'>
+                  <i className="fa fa-user fa-3x"></i> 
+                  <i className="fa fa-car fa-3x"></i> 
+                  <i className="fa fa-bicycle fa-3x"></i> 
+              </div>
+
+              <FoodTable/>
+
             </div>
-            <FoodTable/>
       		</div>
     	);
   	}
