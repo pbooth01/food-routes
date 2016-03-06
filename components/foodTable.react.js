@@ -5,11 +5,41 @@ var React = require('react'),
 
 module.exports = FoodTable = React.createClass({
 
+  clickHandeler: function(event){
+  	var e = event || window.event;
+    var target = e.target || e.srcElement;
+        if(target.tagName.toLowerCase() ==  "td") {
+        	if(target.classList.contains('food-table-active')){
+        		target.classList.remove('food-table-active');
+        		this.props.updateRequest({keyword: null})
+        	}else{
+            	target.classList.add('food-table-active');
+            	this.props.updateRequest({keyword: target.lastChild.textContent});
+            	this.props.getFood();
+        	}
+        }else{
+        	if(target.parentNode.classList.contains('food-table-active')){
+        		target.parentNode.classList.remove('food-table-active');
+        		this.props.updateRequest({keyword: null})
+        	}else{
+            	target.parentNode.classList.add('food-table-active');
+            	this.props.updateRequest({keyword: target.parentNode.lastChild.textContent});
+            	this.props.getFood();
+        	}
+        }
+
+    var activeNodes = document.getElementsByClassName('food-table-active');
+    for(var i = 0; i < activeNodes.length; i++){
+    	if(activeNodes[i] != event.target && activeNodes[i] != event.target.parentNode)
+    		activeNodes[i].classList.remove('food-table-active');
+    }	
+  },
+
   // Render the component
   render: function(){
     return (
       	<table className='food-table'>
-      		<tbody>
+      		<tbody onClick={this.clickHandeler}>
 	      		<tr>
 	      			<td>
 	      				<img src="../images/pizza.svg" alt="pizza" height="75" width="75"/>

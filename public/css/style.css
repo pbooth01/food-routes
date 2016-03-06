@@ -1,6 +1,7 @@
 .panel-body{
 	display: flex;
 	justify-content: space-between;
+	background-color: #F8F8F8;
 }
 
 .way-of-travel-wrapper{
@@ -17,6 +18,14 @@
 	text-align: center;
 }
 
+.food-table td:hover{
+	background-color: #009cde;
+}
+
+.food-table-active{
+	background-color: #009cde;
+}
+
 .waypoint-input-wrapper{
 	width: 20%;
 }
@@ -26,4 +35,5 @@
 	border-radius: 22px;
 	border: 1px solid #009cde;
 	padding-left: 1em;
+	color: #009cde;
 }

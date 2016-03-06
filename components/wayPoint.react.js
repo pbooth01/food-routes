@@ -4,12 +4,27 @@ var React = require('react');
 
 module.exports = WayPoint = React.createClass({
 
-	componentDidMount: function () {
+	getInitialState: function() {
+    return {
+      defaultText: this.props.pointInfo.get('name')
+    };
+  },
+
+  componentDidMount: function () {
   		var node = this.refs['wayPoint'],
         	google = this.props.mapService;
    
         this.autoComplete = new google.maps.places.Autocomplete(node);
         google.maps.event.addListener(this.autoComplete, 'place_changed', this.onPlaceChange);
+    },
+
+    textToggle: function(){
+      var node = this.refs['wayPoint'];
+      if(node.value == this.state.defaultText){
+        node.value = '';
+      }else if(node.value.length <= 0){
+        node.value = this.state.defaultText;
+      }
     },
 
     onPlaceChange: function () {
@@ -28,7 +43,7 @@ module.exports = WayPoint = React.createClass({
   	render: function(){
     	return (
       		<div className="input">
-      			 <input className="waypoint-text" ref='wayPoint' type='text' name='wayPoint' defaultValue={this.props.pointInfo.get('name')}/>
+      			 <input onChange={this.textToggle} className="waypoint-text" ref='wayPoint' type='text' name='wayPoint' defaultValue={this.props.pointInfo.get('name')}/>
       		</div>
     	);
   	}

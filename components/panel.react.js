@@ -44,7 +44,9 @@ module.exports = Panel = React.createClass({
                   <i className="fa fa-bicycle fa-3x"></i> 
               </div>
 
-              <FoodTable/>
+              <FoodTable
+                updateRequest={this.props.updateRequest}
+                getFood={this.props.getFood}/>
 
             </div>
       		</div>

@@ -48,7 +48,22 @@ module.exports = Map = React.createClass({
         		});
 		}	
 		/*Setting up Event Handelers*/
-		vent.on('map:renderRoute', this.renderRoute, this);		
+		vent.on('map:renderRoute', this.renderRoute, this);	
+        vent.on('map:renderFood', this.renderFood, this); 	
+    },
+
+    renderFood: function(){
+        var google = this.props.mapService,
+            foodLocs = this.props.foodLocs;
+            that = this;  
+
+        foodLocs.each(function(loc){
+            var marker = new google.maps.Marker({
+                position: loc.get('loc'),
+                map: that.map,
+                title: loc.get('name')
+            });
+        })
     },
 
     renderRoute: function(){
@@ -146,7 +161,9 @@ module.exports = Map = React.createClass({
 
     	mapCanvas.style.height = vH + 'px';
         this.map = new google.maps.Map(mapCanvas, mapOptions);
+
         /*Setting this up for later*/
+        this.props.setMap(this.map);
         placesService = new google.maps.places.PlacesService(this.map);
         directionsDisplay.setMap(this.map);
     },
